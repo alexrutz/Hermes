@@ -1,0 +1,83 @@
+name: hermes
+
+services:
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      DATA_DIR: /data
+      SGLANG_BASE_URL: ${SGLANG_BASE_URL:-http://localhost:30000}
+      SGLANG_WEB_PASSWORD: ${SGLANG_WEB_PASSWORD:-}
+      SGLANG_AUTH_HEADER: ${SGLANG_AUTH_HEADER:-Authorization}
+      SGLANG_AUTH_SCHEME: ${SGLANG_AUTH_SCHEME:-Bearer}
+      SGLANG_MODEL: ${SGLANG_MODEL:-nvidia/Qwen3.6-27B-NVFP4}
+      SGLANG_READ_TIMEOUT: ${SGLANG_READ_TIMEOUT:-1800}
+      MAX_CONTEXT_TOKENS: ${MAX_CONTEXT_TOKENS:-262144}
+      RESERVED_OUTPUT_TOKENS: ${RESERVED_OUTPUT_TOKENS:-8192}
+      DEFAULT_PDF_DPI: ${DEFAULT_PDF_DPI:-150}
+      DEFAULT_MAX_EDGE: ${DEFAULT_MAX_EDGE:-2048}
+      DEFAULT_IMAGE_FORMAT: ${DEFAULT_IMAGE_FORMAT:-png}
+      DEFAULT_JPEG_QUALITY: ${DEFAULT_JPEG_QUALITY:-90}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+    volumes:
+      # One named volume holds the SQLite database, the original uploads and the
+      # rendered page images. Nothing is lost across a restart — and the base64
+      # written at ingest has to survive, or every cached prefix is invalidated.
+      - hermes-data:/data
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Optional: `docker compose --profile monitoring up`
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    profiles: ["monitoring"]
+    restart: unless-stopped
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+
+  grafana:
+    image: grafana/grafana:11.4.0
+    profiles: ["monitoring"]
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-hermes}
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+    volumes:
+      - ./monitoring/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+
+volumes:
+  hermes-data:
+  prometheus-data:
+  grafana-data:

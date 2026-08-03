@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # SGLang runs outside this stack (vast.ai behind a Cloudflare tunnel), so it
+  # is scraped through the backend's /metrics proxy. That way the tunnel
+  # password lives in exactly one place instead of being duplicated here.
+  - job_name: sglang
+    metrics_path: /api/sglang/metrics/raw
+    static_configs:
+      - targets: ["backend:8000"]
+    scrape_timeout: 10s
+
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`the finished document > matches its snapshot 1`] = `
+"<div class="md"><h1>Quartalsbericht</h1>
+<p>Ein Absatz mit <strong>fett</strong>, <em>kursiv</em>, <del>durchgestrichen</del>, <code>inline code</code> und einem
+Autolink: <a href="https://docs.sglang.io/" target="_blank" rel="noopener noreferrer">https://docs.sglang.io/</a> sowie einem <a href="https://example.com" target="_blank" rel="noopener noreferrer">normalen Link</a>.</p>
+<h2>Tabelle mit Ausrichtung</h2>
+<div class="table-scroll"><table><thead><tr><th style="text-align: left;">Sammlung</th><th style="text-align: right;">Seiten</th><th style="text-align: right;">Tokens</th><th style="text-align: center;">Trefferquote</th></tr></thead><tbody><tr><td style="text-align: left;">Verträge</td><td style="text-align: right;">42</td><td style="text-align: right;">90.174</td><td style="text-align: center;">0,97</td></tr><tr><td style="text-align: left;">Rechnungen</td><td style="text-align: right;">18</td><td style="text-align: right;">38.646</td><td style="text-align: center;">0,94</td></tr><tr><td style="text-align: left;">Sonstiges</td><td style="text-align: right;">7</td><td style="text-align: right;">15.029</td><td style="text-align: center;">—</td></tr></tbody></table></div>
+<h2>Breite Tabelle (muss horizontal scrollen)</h2>
+<div class="table-scroll"><table><thead><tr><th>Dokument</th><th>Seite</th><th>Feld</th><th>Wert</th><th>Einheit</th><th>Quelle</th><th>Erfasst</th><th>Prüfer</th><th>Status</th><th>Kommentar</th></tr></thead><tbody><tr><td>mietvertrag_2024_final_unterschrieben.pdf</td><td>3</td><td>Kaltmiete</td><td>1.200,00</td><td>EUR</td><td>§4 Abs. 1</td><td>ja</td><td>MK</td><td>geprüft</td><td>keine</td></tr><tr><td>nebenkostenabrechnung_2023.pdf</td><td>12</td><td>Nachzahlung</td><td>348,20</td><td>EUR</td><td>Zeile 44</td><td>ja</td><td>MK</td><td>offen</td><td>Widerspruch läuft</td></tr></tbody></table></div>
+<h2>Verschachtelte Listen</h2>
+<ol>
+<li>Erste Ebene
+<ul>
+<li>
+<p>Zweite Ebene mit <code>code</code></p>
+<ol>
+<li>Dritte Ebene
+<ul>
+<li>Vierte Ebene</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Noch ein Punkt</p>
+<p>Ein Absatz innerhalb des Listenpunkts.</p>
+</li>
+</ul>
+</li>
+<li>Zurück auf erster Ebene
+<blockquote>
+<p>Ein Blockquote in einer Liste</p>
+<div class="table-scroll"><table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr></tbody></table></div>
+</blockquote>
+</li>
+</ol>
+<h2>Aufgabenliste</h2>
+<ul class="contains-task-list">
+<li class="task-item"><input type="checkbox" disabled="" checked=""> Präfix-Determinismus getestet</li>
+<li class="task-item"><input type="checkbox" disabled=""> Cache-Baum eingefärbt
+<ul class="contains-task-list">
+<li class="task-item"><input type="checkbox" disabled=""> Unteraufgabe</li>
+</ul>
+</li>
+</ul>
+<h2>Blockquote</h2>
+<blockquote>
+<p>Der KV-Cache überlebt den Neustart nur mit <code>write_through</code>.</p>
+<p>— Doku</p>
+</blockquote>
+<h2>Mathe</h2>
+<p>Inline: der Bildpräfix kostet <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><mi>w</mi><mi mathvariant="normal">/</mi><mn>32</mn><mo stretchy="false">⌉</mo><mo>⋅</mo><mo stretchy="false">⌈</mo><mi>h</mi><mi mathvariant="normal">/</mi><mn>32</mn><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\\lceil w/32 \\rceil \\cdot \\lceil h/32 \\rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">⌈</span><span class="mord mathnormal" style="margin-right: 0.0269em;">w</span><span class="mord">/32</span><span class="mclose">⌉</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">⌈</span><span class="mord mathnormal">h</span><span class="mord">/32</span><span class="mclose">⌉</span></span></span></span> Tokens.</p>
+<p>Display:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>T</mi><mtext>Seite</mtext></msub><mo>=</mo><mrow><mo fence="true">⌈</mo><mfrac><mi>w</mi><mrow><mi>p</mi><mo>⋅</mo><mi>m</mi></mrow></mfrac><mo fence="true">⌉</mo></mrow><mo>⋅</mo><mrow><mo fence="true">⌈</mo><mfrac><mi>h</mi><mrow><mi>p</mi><mo>⋅</mo><mi>m</mi></mrow></mfrac><mo fence="true">⌉</mo></mrow><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">T_{\\text{Seite}} = \\left\\lceil \\frac{w}{p \\cdot m} \\right\\rceil \\cdot \\left\\lceil \\frac{h}{p \\cdot m} \\right\\rceil + 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.8333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3283em;"><span style="top: -2.55em; margin-left: -0.1389em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Seite</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 2.4em; vertical-align: -0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top: 0em;"><span class="delimsizing size3">⌈</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.1076em;"><span style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mord mathnormal">m</span></span></span><span style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.0269em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top: 0em;"><span class="delimsizing size3">⌉</span></span></span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 2.4em; vertical-align: -0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top: 0em;"><span class="delimsizing size3">⌈</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.3714em;"><span style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mord mathnormal">m</span></span></span><span style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top: 0em;"><span class="delimsizing size3">⌉</span></span></span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 0.6444em;"></span><span class="mord">2</span></span></span></span></span>
+<h2>Code</h2>
+<div class="my-4 rounded-lg border border-ink-750 bg-ink-950 overflow-hidden group"><div class="flex items-center justify-between px-3 py-1.5 border-b border-ink-800 bg-ink-900"><span class="text-2xs font-mono text-ink-400 uppercase tracking-wider">python</span><div class="opacity-0 group-hover:opacity-100 transition-opacity"><button type="button" class="btn-ghost !px-2 !py-1 text-2xs">Kopieren</button></div></div><div class="overflow-x-auto p-3 text-[0.8125rem] leading-relaxed font-mono"><pre class="!bg-transparent !m-0 !p-0"><code>def estimate(width: int, height: int, factor: int = 32) -&gt; int:
+    """Vision-Tokens für ein Bild."""
+    return (width // factor) * (height // factor) + 2</code></pre></div></div>
+<div class="my-4 rounded-lg border border-ink-750 bg-ink-950 overflow-hidden group"><div class="flex items-center justify-between px-3 py-1.5 border-b border-ink-800 bg-ink-900"><span class="text-2xs font-mono text-ink-400 uppercase tracking-wider">text</span><div class="opacity-0 group-hover:opacity-100 transition-opacity"><button type="button" class="btn-ghost !px-2 !py-1 text-2xs">Kopieren</button></div></div><div class="overflow-x-auto p-3 text-[0.8125rem] leading-relaxed font-mono"><pre class="!bg-transparent !m-0 !p-0"><code>Codeblock ohne Sprachangabe
+  mit Einrückung</code></pre></div></div>
+<hr>
+<p>Letzter Absatz nach einer horizontalen Linie.</p></div>"
+`;

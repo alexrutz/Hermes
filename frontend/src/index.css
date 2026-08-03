@@ -1,0 +1,194 @@
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 text-ink-200 font-sans antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-ink-100;
+  }
+
+  /* Thin, self-effacing scrollbars — the content is the point. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.ink.700') transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply bg-ink-700 rounded-full border-2 border-transparent bg-clip-content;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-600;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-ink-900 border border-ink-800 rounded-lg;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium
+           transition-colors duration-150 disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-ink-950 hover:bg-accent-soft;
+  }
+  .btn-ghost {
+    @apply btn text-ink-300 hover:bg-ink-800 hover:text-ink-100;
+  }
+  .btn-outline {
+    @apply btn border border-ink-700 text-ink-200 hover:bg-ink-800 hover:border-ink-600;
+  }
+  .btn-danger {
+    @apply btn bg-red-500/10 text-red-300 border border-red-500/25 hover:bg-red-500/20;
+  }
+
+  .input {
+    @apply w-full bg-ink-950 border border-ink-700 rounded-md px-2.5 py-1.5 text-sm
+           text-ink-100 placeholder:text-ink-500 outline-none transition-colors
+           focus:border-accent-dim focus:ring-1 focus:ring-accent-dim;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-2xs font-medium
+           uppercase tracking-wide;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* --- Markdown ------------------------------------------------------------ */
+.md {
+  @apply text-[0.9375rem] leading-[1.7] text-ink-200;
+}
+.md > *:first-child {
+  margin-top: 0;
+}
+.md > *:last-child {
+  margin-bottom: 0;
+}
+.md p {
+  @apply my-3;
+}
+.md h1 {
+  @apply text-xl font-semibold text-ink-100 mt-6 mb-3 tracking-tight;
+}
+.md h2 {
+  @apply text-lg font-semibold text-ink-100 mt-5 mb-2.5 tracking-tight;
+}
+.md h3 {
+  @apply text-base font-semibold text-ink-100 mt-4 mb-2;
+}
+.md h4,
+.md h5,
+.md h6 {
+  @apply text-sm font-semibold text-ink-100 mt-3 mb-1.5;
+}
+.md a {
+  @apply text-accent-soft underline decoration-accent-dim underline-offset-2 hover:decoration-accent;
+}
+.md strong {
+  @apply font-semibold text-ink-100;
+}
+.md ul {
+  @apply my-3 pl-5 list-disc marker:text-ink-500;
+}
+.md ol {
+  @apply my-3 pl-5 list-decimal marker:text-ink-500;
+}
+/* Nested lists tighten up instead of doubling their margins. */
+.md li > ul,
+.md li > ol {
+  @apply my-1;
+}
+.md li {
+  @apply my-1;
+}
+.md li > p {
+  @apply my-1;
+}
+.md li.task-item {
+  @apply list-none -ml-5 flex items-start gap-2;
+}
+.md li.task-item input[type='checkbox'] {
+  @apply mt-1.5 accent-accent;
+}
+.md blockquote {
+  @apply my-4 border-l-2 border-ink-600 pl-4 text-ink-300 italic;
+}
+.md blockquote p {
+  @apply my-2;
+}
+.md hr {
+  @apply my-6 border-ink-800;
+}
+.md code {
+  @apply font-mono text-[0.85em] bg-ink-800 text-ink-100 px-1 py-0.5 rounded border border-ink-750;
+}
+.md pre {
+  @apply my-4 overflow-x-auto;
+}
+.md pre code {
+  @apply bg-transparent border-0 p-0 text-[0.8125rem] leading-relaxed;
+}
+.md .table-scroll {
+  @apply my-4 overflow-x-auto rounded-lg border border-ink-800;
+}
+.md table {
+  @apply w-full border-collapse text-sm;
+}
+.md thead {
+  @apply bg-ink-850;
+}
+.md th {
+  @apply px-3 py-2 text-left font-semibold text-ink-100 border-b border-ink-750 whitespace-nowrap;
+}
+.md td {
+  @apply px-3 py-2 border-b border-ink-850 align-top;
+}
+.md tbody tr:last-child td {
+  @apply border-b-0;
+}
+.md tbody tr:hover {
+  @apply bg-ink-850/40;
+}
+.md del {
+  @apply text-ink-400 line-through;
+}
+.md img {
+  @apply max-w-full rounded-lg my-3;
+}
+.md .katex-display {
+  @apply my-4 overflow-x-auto overflow-y-hidden py-1;
+}
+
+/* Streaming cursor: sits after the last text node without shifting layout. */
+.md-streaming > *:last-child::after {
+  content: '';
+  @apply inline-block w-[2px] h-[1.05em] ml-0.5 -mb-[0.15em] bg-accent animate-shimmer;
+}
